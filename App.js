@@ -1,5 +1,15 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  ActivityIndicator,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+  Platform,
+  Image,
+  StatusBar as ReactNativeStatusBar,
+} from "react-native";
+
 import {
   useFonts,
   Roboto_300Light,
@@ -9,6 +19,11 @@ import {
 } from "@expo-google-fonts/roboto";
 import Main from "./src/components/App";
 
+import { StatusBar } from "expo-status-bar";
+
+const isAndroid =
+  Platform.OS === "android" ? ReactNativeStatusBar.currentHeight : 0;
+const { width } = Dimensions.get("screen");
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_300Light,
@@ -19,7 +34,14 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {!fontsLoaded ? <ActivityIndicator /> : <Main />}
+      {!fontsLoaded ? (
+        <ActivityIndicator />
+      ) : (
+        <React.Fragment>
+          <StatusBar style="light" />
+          <Main />
+        </React.Fragment>
+      )}
     </SafeAreaView>
   );
 }

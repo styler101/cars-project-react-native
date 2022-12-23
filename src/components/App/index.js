@@ -7,21 +7,30 @@ import {
   Platform,
   StatusBar,
   Dimensions,
+  ImageBackground,
+  TouchableOpacity,
+  FlatList,
 } from "react-native";
+
+const { width } = Dimensions.get("screen");
 import teslaLogo from "../../assets/img/logo.png";
 import menuLogo from "../../assets/img/menu.png";
-import { fonts, sizes, spacings } from "../../styles/global";
+import data from "../../data/cars";
+import Card from "../Card";
 
 const isAndroid = Platform.OS === "android" ? StatusBar.currentHeight : 0;
-const { width } = Dimensions.get("screen");
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={teslaLogo} style={styles.logo} />
-        <Image source={menuLogo} style={styles.menu} />
-      </View>
+      <FlatList
+        data={data.data}
+        keyExtractor={(e) => e.id}
+        renderItem={({ item }) => (
+          <Card item={item} style={styles.listContainer} />
+        )}
+        style={styles.list}
+      />
     </View>
   );
 }
@@ -30,26 +39,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginTop: isAndroid,
+    position: "relative",
   },
 
-  header: {
-    width: width,
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: spacings.sm,
-  },
-
-  logo: {
-    width: 110,
-    height: 30,
-    resizeMode: "contain",
-  },
-
-  menu: {
-    width: 30,
-    height: 30,
-    resizeMode: "contain",
+  list: {
+    position: "relative",
   },
 });
