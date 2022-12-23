@@ -1,4 +1,4 @@
-export const sizes = {
+const sizes = {
   xsm: 8,
   xs: 12,
   sm: 14,
@@ -12,7 +12,7 @@ export const sizes = {
   "6xl": 64,
 };
 
-export const spacings = {
+const spacings = {
   xsm: 8,
   xs: 12,
   sm: 14,
@@ -26,14 +26,14 @@ export const spacings = {
   "6xl": 64,
 };
 
-export const fonts = {
-  300: "Roboto_400_Thin",
-  400: "Roboto_Regular",
-  500: "Roboto_Regular500",
-  700: "Roboto_Regular700",
+const fonts = {
+  300: "Roboto_300Light",
+  400: "Roboto_400Regular",
+  500: "Roboto_500Medium",
+  700: "Roboto_700Bold",
 };
 
-export const colors = {
+const colors = {
   white: "#fff",
   red: "#cc0000",
   black: "#1a1a1d",
